@@ -17,6 +17,18 @@ func Mergesort(nums []int) {
 	merge_sort(nums, temp, 0, len(nums)-1)
 }
 
+func InsertionSort(n int, arr []int) {
+    var temp int
+    for i := 1; i < n; i++ {
+        temp = arr[i]
+        for j := i-1; j >= 0 && arr[j+1] < arr[j]; j-- { 
+            temp = arr[j]
+            arr[j] = arr[j+1]
+            arr[j+1] = temp
+        }
+    }
+}
+
 func merge_sort(nums, temp []int, leftStart, rightEnd int) {
 	// case: 1 element
 	if leftStart >= rightEnd {
@@ -49,3 +61,4 @@ func merge_halves(nums, temp []int, leftStart, rightEnd int) {
 	copy(temp[i:i+rightEnd-right+1], nums[right:rightEnd+1])
 	copy(nums[leftStart:rightEnd+1], temp[leftStart:rightEnd+1])
 }
+
