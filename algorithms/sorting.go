@@ -62,3 +62,24 @@ func merge_halves(nums, temp []int, leftStart, rightEnd int) {
 	copy(nums[leftStart:rightEnd+1], temp[leftStart:rightEnd+1])
 }
 
+func Quicksort(n int, arr []int) {
+    quick_sort(arr, 0, n-1)
+}
+
+func quick_sort(arr []int, leftStart, rightEnd int) {
+    if leftStart >= rightEnd { return }
+    pivot := arr[leftStart]
+    i := leftStart
+    for j := leftStart; j <= rightEnd; j++ {
+        if arr[j] < pivot {
+            arr[j], arr[i] = arr[i],arr[j]
+            i++
+        }
+    }
+    // pivot is now at the end - swap it too
+    if i != leftStart {
+        arr[i],arr[rightEnd] = arr[rightEnd],arr[i]
+    }
+    quick_sort(arr, leftStart, i-1)
+    quick_sort(arr, i+1, rightEnd)
+}
